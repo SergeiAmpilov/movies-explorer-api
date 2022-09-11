@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
 
 app.use('/.well-known', (req, res, next) => {
-  res.status(200).send({ message: 'ok' });
+  res.status(200);
 });
 app.use(router);
 app.use('*', notFoundRequest);
