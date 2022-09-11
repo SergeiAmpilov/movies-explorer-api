@@ -39,9 +39,9 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.updateUser = (req, res, next) => {
-  const { name } = req.body;
+  const { name, email } = req.body;
 
-  User.findByIdAndUpdate(req.user._id, { name }, { new: true, runValidators: true })
+  User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
     .orFail(() => {
       throw new NotFoundError('Пользователь не найден');
     })
