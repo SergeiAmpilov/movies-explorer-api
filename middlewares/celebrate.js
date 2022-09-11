@@ -13,29 +13,12 @@ const checkSignUp = celebrate({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
     name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(regexVal),
-  }),
-});
-
-const checkUserId = celebrate({
-  params: Joi.object().keys({
-    userId: Joi.string().custom(checkIsCorrectId, 'custom id validation'),
-  }).messages({
-    'invalid.id': 'Некорректный id пользователя',
   }),
 });
 
 const checkUserUpdate = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    about: Joi.string().required().min(2).max(30),
-  }),
-});
-
-const checkUserAvatar = celebrate({
-  body: Joi.object().keys({
-    avatar: Joi.string().required().pattern(regexVal),
   }),
 });
 
@@ -57,9 +40,7 @@ const checkCardId = celebrate({
 module.exports = {
   checkSignIn,
   checkSignUp,
-  checkUserId,
   checkUserUpdate,
-  checkUserAvatar,
   checkCardPost,
   checkCardId,
 };

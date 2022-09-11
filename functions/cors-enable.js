@@ -1,9 +1,9 @@
 const corsEnable = {
   origin: [
-    'https://mesto.ampilovs.ru',
-    'http://mesto.ampilovs.ru',
-    'http://localhost:3000',
-    'https://localhost:3000',
+    'https://movie.ampilovs.ru',
+    'http://movie.ampilovs.ru',
+    'http://localhost:3001',
+    'https://localhost:3001',
   ],
   credentials: true,
 };
