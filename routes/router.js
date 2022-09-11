@@ -10,7 +10,7 @@ router.post('/signin', checkSignIn, login);
 router.post('/signup', checkSignUp, createUser);
 router.post('/signout', logout);
 
-router.use(auth);
+// router.use(auth);
 
 router.use('/users', userRouter);
 router.use('/movies', movieRouter);
