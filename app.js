@@ -21,9 +21,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
 
-app.use('/.well-known', (req, res, next) => {
-  res.status(200).send({ message: 'ok' });
-});
+// app.use('/.well-known', (req, res, next) => {
+//   res.status(200).send({ message: 'ok' });
+// });
 app.use(router);
 app.use('*', notFoundRequest);
 
