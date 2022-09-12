@@ -1,5 +1,4 @@
 const { celebrate, Joi } = require('celebrate');
-const { regexVal, checkIsCorrectId } = require('../functions/validate-url');
 
 const checkSignIn = celebrate({
   body: Joi.object().keys({
@@ -23,25 +22,8 @@ const checkUserUpdate = celebrate({
   }),
 });
 
-const checkCardPost = celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().pattern(regexVal),
-  }),
-});
-
-const checkCardId = celebrate({
-  params: Joi.object().keys({
-    cardId: Joi.string().custom(checkIsCorrectId, 'custom id validation'),
-  }).messages({
-    'invalid.id': 'Некорректный id карточки',
-  }),
-});
-
 module.exports = {
   checkSignIn,
   checkSignUp,
   checkUserUpdate,
-  checkCardPost,
-  checkCardId,
 };

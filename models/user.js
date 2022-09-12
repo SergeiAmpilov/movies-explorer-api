@@ -3,8 +3,6 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const BadUserError = require('../errors/bad-user-error');
 
-// const { regexVal } = require('../functions/validate-url');
-
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
