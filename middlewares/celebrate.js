@@ -1,4 +1,5 @@
 const { celebrate, Joi } = require('celebrate');
+const { checkIsCorrectId } = require('../utils/check-params');
 
 const checkSignIn = celebrate({
   body: Joi.object().keys({
@@ -22,8 +23,17 @@ const checkUserUpdate = celebrate({
   }),
 });
 
+const checkMovieId = celebrate({
+  params: Joi.object().keys({
+    movieId: Joi.string().custom(checkIsCorrectId, 'custom id validation'),
+  }).messages({
+    'invalid.id': 'Некорректный id фильма',
+  }),
+});
+
 module.exports = {
   checkSignIn,
   checkSignUp,
   checkUserUpdate,
+  checkMovieId,
 };
