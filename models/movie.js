@@ -54,7 +54,7 @@ const movieSchema = new mongoose.Schema({
   },
   country: {
     type: String,
-    required: [true, 'director is required'],
+    required: [true, 'country is required'],
   },
 });
 

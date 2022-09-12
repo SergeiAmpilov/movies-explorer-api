@@ -1,5 +1,5 @@
 const { celebrate, Joi } = require('celebrate');
-const { checkIsCorrectId } = require('../utils/check-params');
+const { checkIsCorrectId, regexVal } = require('../utils/check-params');
 
 const checkSignIn = celebrate({
   body: Joi.object().keys({
@@ -31,9 +31,27 @@ const checkMovieId = celebrate({
   }),
 });
 
+const checkFilmPost = celebrate({
+  body: Joi.object().keys({
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+    movieId: Joi.number().integer().required(),
+    owner: Joi.string().custom(checkIsCorrectId, 'custom id validation').required(),
+    thumbnail: Joi.string().required().pattern(regexVal),
+    trailerLink: Joi.string().required().pattern(regexVal),
+    image: Joi.string().required().pattern(regexVal),
+    description: Joi.string().required(),
+    year: Joi.string().min(2).max(4).required(),
+    duration: Joi.number().integer().required(),
+    director: Joi.string().required(),
+    country: Joi.string().required(),
+  }),
+});
+
 module.exports = {
   checkSignIn,
   checkSignUp,
   checkUserUpdate,
   checkMovieId,
+  checkFilmPost,
 };
