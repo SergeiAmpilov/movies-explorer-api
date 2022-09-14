@@ -36,7 +36,6 @@ const checkFilmPost = celebrate({
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
     movieId: Joi.number().integer().required(),
-    owner: Joi.string().custom(checkIsCorrectId, 'custom id validation').required(),
     thumbnail: Joi.string().required().pattern(regexVal),
     trailerLink: Joi.string().required().pattern(regexVal),
     image: Joi.string().required().pattern(regexVal),
