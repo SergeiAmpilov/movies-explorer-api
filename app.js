@@ -12,7 +12,10 @@ const router = require('./routes/router');
 const { processError, notFoundRequest } = require('./middlewares/error');
 const corsEnable = require('./utils/cors-enable');
 
-const { PORT = 3001 } = process.env;
+const {
+  PORT = 3001,
+  DB_CONN = 'mongodb://localhost:27017/moviesdb',
+} = process.env;
 
 const app = express();
 app.use(cookieParser());
@@ -24,7 +27,7 @@ app.use(requestLogger);
 app.use(router);
 app.use('*', notFoundRequest);
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
+mongoose.connect(DB_CONN, {
   useNewUrlParser: true,
 });
 
