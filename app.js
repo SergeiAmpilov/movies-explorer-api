@@ -18,12 +18,12 @@ const { PORT, DB_CONN } = require('./utils/constants');
 
 const app = express();
 app.use(helmet());
+app.use(requestLogger);
 app.use(rateLimit(rateLimitConfig));
 app.use(cookieParser());
 app.use(cors(corsEnable));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(requestLogger);
 
 app.use(router);
 
