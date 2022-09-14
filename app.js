@@ -9,7 +9,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const router = require('./routes/router');
 
-const { processError, notFoundRequest } = require('./middlewares/error');
+const { processError } = require('./middlewares/error');
 const corsEnable = require('./utils/cors-enable');
 
 const {
@@ -25,7 +25,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
 
 app.use(router);
-app.use('*', notFoundRequest);
 
 mongoose.connect(DB_CONN, {
   useNewUrlParser: true,

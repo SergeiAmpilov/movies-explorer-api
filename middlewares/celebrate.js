@@ -40,7 +40,7 @@ const checkFilmPost = celebrate({
     trailerLink: Joi.string().required().pattern(regexVal),
     image: Joi.string().required().pattern(regexVal),
     description: Joi.string().required(),
-    year: Joi.string().min(2).max(4).required(),
+    year: Joi.string().required(),
     duration: Joi.number().integer().required(),
     director: Joi.string().required(),
     country: Joi.string().required(),
