@@ -52,6 +52,11 @@ module.exports.updateUser = (req, res, next) => {
         return;
       }
 
+      if (err.name === 'MongoServerError' && err.code === 11000) {
+        next(new ExistError('Такой email уже существует'));
+        return;
+      }
+
       if (err.name === 'CastError') {
         next(new NotFoundError('Не найден пользователь по указанному id'));
         return;
