@@ -12,10 +12,7 @@ const router = require('./routes/router');
 const { processError } = require('./middlewares/error');
 const corsEnable = require('./utils/cors-enable');
 
-const {
-  PORT = 3001,
-  DB_CONN = 'mongodb://localhost:27017/moviesdb',
-} = process.env;
+const { PORT, DB_CONN } = require('./utils/constants');
 
 const app = express();
 app.use(cookieParser());

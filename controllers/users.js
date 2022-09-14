@@ -6,7 +6,7 @@ const NotFoundError = require('../errors/not-found-error');
 const DataError = require('../errors/data-error');
 const ExistError = require('../errors/exist-error');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+const { NODE_ENV, JWT_SECRET } = require('../utils/constants');
 
 module.exports.createUser = (req, res, next) => {
   const {
