@@ -34,7 +34,7 @@ userSchema.statics.findUserByCredentials = function (email, password) {
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) {
-            throw new BadUserError('Неверный емайл или пароль');
+            throw new BadUserError();
           }
 
           return user;

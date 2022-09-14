@@ -25,12 +25,12 @@ module.exports.createUser = (req, res, next) => {
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new DataError('Переданы некорректные данные'));
+        next(new DataError());
         return;
       }
 
       if (err.name === 'MongoServerError' && err.code === 11000) {
-        next(new ExistError('Такой пользователь уже существует'));
+        next(new ExistError());
         return;
       }
 
@@ -43,22 +43,22 @@ module.exports.updateUser = (req, res, next) => {
 
   User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
     .orFail(() => {
-      throw new NotFoundError('Пользователь не найден');
+      throw new NotFoundError();
     })
     .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new DataError('Переданы некорректные данные'));
+        next(new DataError());
         return;
       }
 
       if (err.name === 'MongoServerError' && err.code === 11000) {
-        next(new ExistError('Такой email уже существует'));
+        next(new ExistError());
         return;
       }
 
       if (err.name === 'CastError') {
-        next(new NotFoundError('Не найден пользователь по указанному id'));
+        next(new NotFoundError());
         return;
       }
 
@@ -93,7 +93,7 @@ module.exports.getUserInfo = (req, res, next) => {
 
   User.findById(userId)
     .orFail(() => {
-      throw new NotFoundError('Пользователь не найден');
+      throw new NotFoundError();
     })
     .then((user) => res.status(200).send(user))
     .catch((err) => {

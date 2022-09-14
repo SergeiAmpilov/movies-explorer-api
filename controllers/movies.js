@@ -35,7 +35,7 @@ module.exports.createMovie = (req, res, next) => {
     .then((movie) => res.status(201).send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new DataError('Переданы некорректные данные'));
+        next(new DataError());
         return;
       }
 
@@ -52,7 +52,7 @@ module.exports.getMovies = (req, res, next) => {
 module.exports.deleteMovie = (req, res, next) => {
   Movie.findById(req.params.movieId)
     .orFail(() => {
-      throw new NotFoundError('Фильм с указанным id не найдена');
+      throw new NotFoundError();
     })
     .then((movie) => {
       if (movie.owner._id.toString() !== req.user._id.toString()) {
